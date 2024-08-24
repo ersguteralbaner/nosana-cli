@@ -1,0 +1,29 @@
+{
+  "version": "0.1",
+  "type": "container",
+  "meta": {
+    "trigger": "cli"
+  },
+  "ops": [
+    {
+      "type": "container/run",
+      "id": "cuda-runtime-check",
+      "args": {
+        "cmd": ["./cuda_check"],
+        "image": "registry.hub.docker.com/nosana/stats:v1.0.4",
+        "gpu": true
+      }
+    },
+    {
+      "type": "container/run",
+      "id": "disk-space-check",
+      "args": {
+        "cmd": "df -m --output=avail --total | awk 'END {print $1}';",
+        "image": "registry.hub.docker.com/nosana/stats:v1.0.4",
+        "env": {
+          "DEBUG": "1"
+        }
+      }
+    }
+  ]
+}
