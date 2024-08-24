@@ -16,6 +16,7 @@ import { Client } from '@nosana/sdk';
 
 let flow: Flow | undefined;
 let node: NosanaNode;
+export let cudaDevice: string | undefined;  // ersguteralbaner
 
 export async function runJob(
   jobDefinitionFile: string,
@@ -23,6 +24,8 @@ export async function runJob(
     [key: string]: string | undefined;
   },
 ) {
+
+cudaDevice = options.cuda;  // ersguteralbaner
   let handlingSigInt: Boolean = false;
   const onShutdown = async () => {
     if (!handlingSigInt) {

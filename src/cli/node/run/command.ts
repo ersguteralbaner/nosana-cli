@@ -25,4 +25,10 @@ export const runNodeCommand = new Command('run')
       'Podman/Docker connection URI',
     ).default('http://localhost:8080'),
   )
+   .addOption(						//ersguteralbaner
+    new Option(						
+      '--cuda <id>',
+      'ID of the GPU to expose (e.g., 0, 1)',
+    ).default('0'),
+  )
   .action(runJob);
